@@ -12,12 +12,12 @@ script:
   - docker run -e CI=true jaehyeonlim/react-test-app npm run test
 
 after_success:
-  - docker build -t jaehyeonlim/docker-frontend ./frontend
-  - docker build -t jaehyeonlim/docker-backend ./backend
-  - docker build -t jaehyeonlim/docker-nginx  ./nginx
+  - docker build -t jaehyeonlim/docker-frontend:1.0 ./frontend
+  - docker build -t jaehyeonlim/docker-backend:1.0 ./backend
+  - docker build -t jaehyeonlim/docker-nginx:1.0  ./nginx
 
   - echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_HUB_ID" --password-stdin
 
-  - docker push jaehyeonlim/docker-frontend
-  - docker push jaehyeonlim/docker-backend
-  - docker push jaehyeonlim/docker-nginx
+  - docker push jaehyeonlim/docker-frontend:1.0
+  - docker push jaehyeonlim/docker-backend:1.0
+  - docker push jaehyeonlim/docker-nginx:1.0
