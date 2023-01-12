@@ -21,3 +21,16 @@ after_success:
   - docker push jaehyeonlim/docker-frontend:1.0
   - docker push jaehyeonlim/docker-backend:1.0
   - docker push jaehyeonlim/docker-nginx:1.0
+
+deploy:
+  provider: elasticbeanstalk
+  region: ap-northeast-2
+  app: docker-fullstack-app
+  env: Dockerfullstackapp-env
+  bucket: elasticbeanstalk-ap-northeast-2-147255860737
+  bucket_path: docker-fullstack-app
+  on:
+    branch: master
+
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_ACCESS_KEY
